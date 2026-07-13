@@ -1,8 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
 
     <link
       rel="stylesheet"
@@ -33,7 +35,7 @@
     />
     <meta
       property="og:image"
-      content="https://projeto-cardapio-wine.vercel.app/assets/hamb-1.png"
+      content="https://projeto-cardapio-wine.vercel.app/assets/hamb-1.webp"
     />
     <meta
       property="og:description"
@@ -43,6 +45,39 @@
 
     <link rel="stylesheet" href="./styles/output.css" />
 
+    <!-- SCHEMA.ORG: ajuda o Google a exibir melhor o restaurante nas buscas -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Cascatinha Burguer",
+        "servesCuisine": "Hamburgueria",
+        "priceRange": "R$18-R$36",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Deusdedith Salgado",
+          "addressLocality": "Juiz de Fora",
+          "addressRegion": "MG",
+          "addressCountry": "BR"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "18:00",
+          "closes": "22:00"
+        },
+        "image": "https://projeto-cardapio-wine.vercel.app/assets/hamb-1.webp"
+      }
+    </script>
+
     <title>Cascatinha Burguer - A melhor hamburgueria dev!</title>
   </head>
   <body>
@@ -50,7 +85,7 @@
     <header class="w-full h-[420px] bg-zinc-900 bg-home bg-cover bg-center">
       <div class="w-full h-full flex flex-col justify-center items-center">
         <img
-          src="./assets/hamb-1.png"
+          src="./assets/hamb-1.webp"
           alt="Logo CascatinhaBurguer"
           class="w-32 h-32 rounded-full shadow-lg hover:scale-110 duration-200"
         />
@@ -79,9 +114,10 @@
         <!-- PRODUTO ITEM -->
         <div class="flex gap-2">
           <img
-            src="./assets/hamb-1.png"
-            alt="Hamburuger Smash"
+            src="./assets/hamb-1.webp"
+            alt="Hamburguer Smash"
             class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+            loading="lazy"
           />
 
           <div>
@@ -100,6 +136,7 @@
                 class="bg-gray-900 px-5 rounded add-to-cart-btn"
                 data-name="Hamburguer Smash"
                 data-price="18.90"
+                aria-label="Adicionar Hamburguer Smash ao carrinho"
               >
                 <i class="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -111,9 +148,10 @@
         <!-- PRODUTO ITEM -->
         <div class="flex gap-2">
           <img
-            src="./assets/hamb-2.png"
-            alt="Hamburuger Duplo"
+            src="./assets/hamb-2.webp"
+            alt="Hamburguer Duplo"
             class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+            loading="lazy"
           />
 
           <div>
@@ -128,8 +166,9 @@
               <p class="font-bold text-lg">R$ 32.90</p>
               <button
                 class="bg-gray-900 px-5 rounded add-to-cart-btn"
-                data-name="Hamburuger Duplo"
+                data-name="Hamburguer Duplo"
                 data-price="32.90"
+                aria-label="Adicionar Hamburguer Duplo ao carrinho"
               >
                 <i class="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -141,9 +180,10 @@
         <!-- PRODUTO ITEM -->
         <div class="flex gap-2">
           <img
-            src="./assets/hamb-3.png"
+            src="./assets/hamb-3.webp"
             alt="Hamburguer Salad"
             class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+            loading="lazy"
           />
 
           <div>
@@ -161,8 +201,9 @@
               <p class="font-bold text-lg">R$ 35.90</p>
               <button
                 class="bg-gray-900 px-5 rounded add-to-cart-btn"
-                data-name="Hamburuger Salad"
+                data-name="Hamburguer Salad"
                 data-price="35.90"
+                aria-label="Adicionar Hamburguer Salad ao carrinho"
               >
                 <i class="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -174,12 +215,13 @@
         <!-- PRODUTO ITEM -->
         <div class="flex gap-2">
           <img
-            src="./assets/hamb-4.png"
-            alt="Hamburuger da casa"
+            src="./assets/hamb-4.webp"
+            alt="Hamburguer da casa"
             class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+            loading="lazy"
           />
           <div>
-            <p class="font-bold">Hamburuger da casa</p>
+            <p class="font-bold">Hamburguer da casa</p>
             <p class="text-sm">
               Ingredientes exclusivos, uma combinação especial de condimentos ou
               um método de preparo diferenciado que o distingue dos hambúrgueres
@@ -190,8 +232,9 @@
               <p class="font-bold text-lg">R$ 30.00</p>
               <button
                 class="bg-gray-900 px-5 rounded add-to-cart-btn"
-                data-name="Hamburuger da casa"
-                data-price="30"
+                data-name="Hamburguer da casa"
+                data-price="30.00"
+                aria-label="Adicionar Hamburguer da casa ao carrinho"
               >
                 <i class="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -207,14 +250,15 @@
       <!-- GRID BEBIDAS -->
       <div
         class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-2 mb-16"
-        id="menu"
+        id="menu-bebidas"
       >
         <!-- BEBIDA ITEM -->
         <div class="flex gap-2 w-full">
           <img
-            src="./assets/refri-1.png"
+            src="./assets/refri-1.webp"
             alt="Coca lata"
             class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+            loading="lazy"
           />
           <div class="w-full">
             <p class="font-bold">Coca-Cola lata</p>
@@ -223,7 +267,8 @@
               <button
                 class="bg-gray-900 px-5 rounded add-to-cart-btn"
                 data-name="Coca lata"
-                data-price="6"
+                data-price="6.00"
+                aria-label="Adicionar Coca-Cola lata ao carrinho"
               >
                 <i class="fa fa-cart-plus text-lg text-white"></i>
               </button>
@@ -234,9 +279,10 @@
         <!-- BEBIDA ITEM -->
         <div class="flex gap-2 w-full">
           <img
-            src="./assets/refri-2.png"
+            src="./assets/refri-2.webp"
             alt="Guaraná lata"
             class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+            loading="lazy"
           />
           <div class="w-full">
             <p class="font-bold">Guaraná lata</p>
@@ -245,7 +291,8 @@
               <button
                 class="bg-gray-900 px-5 rounded add-to-cart-btn"
                 data-name="Guarana lata"
-                data-price="6"
+                data-price="6.00"
+                aria-label="Adicionar Guaraná lata ao carrinho"
               >
                 <i class="fa fa-cart-plus text-lg text-white"></i>
               </button>

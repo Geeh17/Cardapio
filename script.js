@@ -1,3 +1,8 @@
+// ⚠️ CONFIGURAÇÃO: troque pelo número de WhatsApp do restaurante
+// Formato: código do país + DDD + número, sem espaços, traços ou símbolos
+// Exemplo: "5532999999999" (55 = Brasil, 32 = DDD de Juiz de Fora)
+const WHATSAPP_PHONE = "NUMERO_DO_TELEFONE"
+
 const menu = document.getElementById("menu")
 const cartBtn = document.getElementById("cart-btn")
 const cartModal = document.getElementById("cart-modal")
@@ -10,7 +15,8 @@ const addressInput = document.getElementById("address")
 const addressWarn = document.getElementById("address-warn")
 
 
-let cart = [];
+// Carrega o carrinho salvo (se existir) para o carrinho não zerar ao recarregar a página
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // Abrir o modal do carrinho
 cartBtn.addEventListener("click", function() { 
@@ -63,6 +69,19 @@ function addToCart(name, price){
 
   updateCartModal()
 
+  // Feedback visual rápido ao adicionar um item
+  Toastify({
+    text: `${name} adicionado ao carrinho! 🍔`,
+    duration: 2000,
+    close: true,
+    gravity: "top",
+    position: "right",
+    stopOnFocus: true,
+    style: {
+      background: "#22c55e",
+    },
+  }).showToast();
+
 }
 
 
@@ -103,6 +122,9 @@ function updateCartModal(){
   });
 
   cartCounter.innerHTML = cart.length;
+
+  // Salva o estado atual do carrinho para persistir entre recarregamentos
+  localStorage.setItem("cart", JSON.stringify(cart));
 
 }
 
@@ -184,10 +206,21 @@ checkoutBtn.addEventListener("click", function(){
     )
   }).join("")
 
-  const message = encodeURIComponent(cartItems)
-  const phone = "NUMERO_DO_TELEFONE"
+  if(WHATSAPP_PHONE === "NUMERO_DO_TELEFONE"){
+    Toastify({
+      text: "Número de WhatsApp não configurado. Edite WHATSAPP_PHONE em script.js",
+      duration: 4000,
+      close: true,
+      gravity: "top",
+      position: "right",
+      style: { background: "#ef4444" },
+    }).showToast();
+    return;
+  }
 
-  window.open(`https://wa.me/${phone}?text=${message} Endereço: ${addressInput.value}`, "_blank")
+  const message = encodeURIComponent(cartItems)
+
+  window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${message} Endereço: ${addressInput.value}`, "_blank")
 
   cart = [];
   updateCartModal();
@@ -203,6 +236,10 @@ function checkRestaurantOpen(){
   //true = restaurante está aberto 
 }
 
+
+// Atualiza o contador/itens do carrinho já ao carregar a página
+// (caso haja itens salvos de uma visita anterior)
+updateCartModal();
 
 const spanItem = document.getElementById("date-span")
 const isOpen = checkRestaurantOpen();
